@@ -36,22 +36,15 @@ router.get("/blog/:id", async (req, res) => {
 
 // a blog create operation
 router.post("/create-blog", async (req, res) => {
-  const {
-    title,
-    description,
-    publish_date,
-    author_name,
-    blog_image,
-    total_likes,
-  } = req.body;
+  const { title, description, publish_date, author_name, blog_image } =
+    req.body;
   try {
     const newBlog = await createBlog(
       title,
       description,
       publish_date,
       author_name,
-      blog_image,
-      total_likes
+      blog_image
     );
     res.status(201).json(newBlog);
   } catch (err) {
@@ -61,14 +54,10 @@ router.post("/create-blog", async (req, res) => {
 
 // specific blog update operation
 router.put("/update-blog/:id", async (req, res) => {
-  const {
-    title,
-    description,
-    publish_date,
-    author_name,
-    blog_image,
-    total_likes,
-  } = req.body;
+  const { title, description, publish_date, author_name, blog_image } =
+    req.body;
+
+  // console.log(req.body);
   try {
     const updatedBlog = await updateBlog(
       req.params.id,
@@ -76,8 +65,7 @@ router.put("/update-blog/:id", async (req, res) => {
       description,
       publish_date,
       author_name,
-      blog_image,
-      total_likes
+      blog_image
     );
     if (updatedBlog) {
       res.json(updatedBlog);

@@ -1,18 +1,17 @@
 const client = require("../index");
-const { v4: uuidv4 } = require("uuid");
+// const { v4: uuidv4 } = require("uuid");
 
 const createBlog = async (
   title,
   description,
   publish_date,
   author_name,
-  blog_image,
-  total_likes
+  blog_image
 ) => {
-  const id = uuidv4();
+  // const id = uuidv4();
   const res = await client.query(
-    "INSERT INTO blogs (id, title, description, publish_date, author_name, blog_image, total_likes) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-    [id, title, description, publish_date, author_name, blog_image, total_likes]
+    "INSERT INTO blogs ( title, description, publish_date, author_name, blog_image) VALUES ($1, $2, $3, $4, $5 ) RETURNING *",
+    [title, description, publish_date, author_name, blog_image]
   );
   return res.rows[0];
 };
@@ -33,12 +32,11 @@ const updateBlog = async (
   description,
   publish_date,
   author_name,
-  blog_image,
-  total_likes
+  blog_image
 ) => {
   const res = await client.query(
-    "UPDATE blogs SET title = $1, description = $2, publish_date = $3, author_name = $4, blog_image = $5, total_likes = $6 WHERE id = $7 RETURNING *",
-    [title, description, publish_date, author_name, blog_image, total_likes, id]
+    "UPDATE blogs SET title = $1, description = $2, publish_date = $3, author_name = $4, blog_image = $5 WHERE id = $6 RETURNING *",
+    [title, description, publish_date, author_name, blog_image, id]
   );
   return res.rows[0];
 };
