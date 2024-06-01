@@ -60,7 +60,4 @@ Installation.
    npm run dev
    ```
 
-
-<!-- ------------------DEVELOPED BY Team-Unbeaten------------------- -->
-
 Thanks.
